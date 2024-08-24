@@ -1042,11 +1042,12 @@ void cLuxInputHandler::UpdateGamePlayerInput()
 
 	/////////////////
 	// Lean
-	if(mpInput->IsTriggerd(eLuxAction_LeanRight))
+
+	if(mpInput->BecameTriggerd(eLuxAction_LeanRight))
 	{
 		mpPlayer->SetLean(1);
 	}
-	if(mpInput->IsTriggerd(eLuxAction_LeanLeft))
+	if(mpInput->BecameTriggerd(eLuxAction_LeanLeft))
 	{
 		mpPlayer->SetLean(-1);
 	}

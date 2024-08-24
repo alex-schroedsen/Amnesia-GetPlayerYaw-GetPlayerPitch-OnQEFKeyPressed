@@ -714,7 +714,22 @@ void cLuxPlayer::AddPitch(float afAmount)
 
 void cLuxPlayer::SetLean(float afMul)
 {
-	mpLean->SetLean(afMul);
+//	mpLean->SetLean(afMul);
+
+	if(afMul==1)//triggered when eLuxAction_LeanRight is triggered, E-Key Pressed
+	{
+			cLuxMap *pMap = gpBase->mpMapHandler->GetCurrentMap();
+			if(pMap==NULL) return;
+
+			pMap->AddTimer("OnEKeyPressed-timer",0.0f, "OnEKeyPressed");
+	}
+	if(afMul==-1)//triggered when eLuxAction_LeanLeft is triggered, Q-Key Pressed
+	{
+			cLuxMap *pMap = gpBase->mpMapHandler->GetCurrentMap();
+			if(pMap==NULL) return;
+
+			pMap->AddTimer("OnQKeyPressed-timer",0.0f, "OnQKeyPressed");
+	}
 }
 
 void cLuxPlayer::AddLean(float afAdd)

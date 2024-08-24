@@ -489,6 +489,7 @@ void cLuxScriptHandler::InitScriptFunctions()
 	AddFunc("float GetPlayerSpeed()",(void *)GetPlayerSpeed);
 	AddFunc("float GetPlayerYSpeed()",(void *)GetPlayerYSpeed);
 	AddFunc("float GetPlayerYaw()",(void *)GetPlayerYaw);
+	AddFunc("float GetPlayerPitch()",(void *)GetPlayerPitch);
 	AddFunc("void MovePlayerForward(float afAmount)",(void *)MovePlayerForward);
 	AddFunc("void SetPlayerPermaDeathSound(string &in asSound)",(void *)SetPlayerPermaDeathSound);
 
@@ -1485,7 +1486,17 @@ float __stdcall cLuxScriptHandler::GetPlayerYSpeed()
 
 float __stdcall cLuxScriptHandler::GetPlayerYaw()
 {
-	return gpBase->mpPlayer->GetCharacterBody()->GetYaw();
+//	return gpBase->mpPlayer->GetCharacterBody()->GetYaw();
+//  Found the new code in LuxDebugHandler.cpp on line 1260
+	cCamera *pCam = gpBase->mpPlayer->GetCamera();
+	return pCam->GetYaw();
+}
+
+//-----------------------------------------------------------------------
+float __stdcall cLuxScriptHandler::GetPlayerPitch()
+{
+	cCamera *pCam = gpBase->mpPlayer->GetCamera();
+	return pCam->GetPitch();
 }
 
 //-----------------------------------------------------------------------

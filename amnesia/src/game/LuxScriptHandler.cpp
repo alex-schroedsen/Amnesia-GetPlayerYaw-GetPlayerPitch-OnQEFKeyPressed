@@ -488,6 +488,7 @@ void cLuxScriptHandler::InitScriptFunctions()
 
 	AddFunc("float GetPlayerSpeed()",(void *)GetPlayerSpeed);
 	AddFunc("float GetPlayerYSpeed()",(void *)GetPlayerYSpeed);
+	AddFunc("float GetPlayerYaw()",(void *)GetPlayerYaw);
 	AddFunc("void MovePlayerForward(float afAmount)",(void *)MovePlayerForward);
 	AddFunc("void SetPlayerPermaDeathSound(string &in asSound)",(void *)SetPlayerPermaDeathSound);
 
@@ -1478,6 +1479,13 @@ float __stdcall cLuxScriptHandler::GetPlayerSpeed()
 float __stdcall cLuxScriptHandler::GetPlayerYSpeed()
 {
 	return gpBase->mpPlayer->GetCharacterBody()->GetVelocity(1.0f/60.0f).y;
+}
+
+//-----------------------------------------------------------------------
+
+float __stdcall cLuxScriptHandler::GetPlayerYaw()
+{
+	return gpBase->mpPlayer->GetCharacterBody()->GetYaw();
 }
 
 //-----------------------------------------------------------------------

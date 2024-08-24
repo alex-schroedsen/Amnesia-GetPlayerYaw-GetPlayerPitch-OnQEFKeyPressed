@@ -210,6 +210,7 @@ private:
 
 	static float __stdcall GetPlayerSpeed();
 	static float __stdcall GetPlayerYSpeed();
+	static float __stdcall GetPlayerYaw();
 
 	static void __stdcall MovePlayerForward(float afAmount);
 

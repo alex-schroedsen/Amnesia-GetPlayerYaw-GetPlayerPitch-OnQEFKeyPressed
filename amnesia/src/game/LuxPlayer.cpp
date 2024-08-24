@@ -738,7 +738,12 @@ void cLuxPlayer::DoAction(eLuxPlayerAction aAction, bool abPressed)
 	{
 		if(aAction== eLuxPlayerAction_Lantern && abPressed)
 		{
-			mpLantern->SetActive(!mpLantern->IsActive(), true);
+//			mpLantern->SetActive(!mpLantern->IsActive(), true);
+			cLuxMap *pMap = gpBase->mpMapHandler->GetCurrentMap();
+			if(pMap==NULL) return;
+
+			pMap->AddTimer("OnFKeyPressed_Timer",0.0f, "OnFKeyPressed");
+
 		}
 
 	}

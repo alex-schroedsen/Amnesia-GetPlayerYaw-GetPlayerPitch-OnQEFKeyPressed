@@ -948,9 +948,10 @@ void cLuxInputHandler::UpdateGameInput()
 
 	////////////////////
 	//Toggle Crosshair
-	if(mpInput->BecameTriggerd(eLuxAction_CrosshairToggle))
+	if(mpInput->BecameTriggerd(eLuxAction_CrosshairToggle))//triggered when eLuxAction_QuestLog is triggered, X-Key Pressed.
 	{
-		gpBase->mpPlayer->SetShowCrosshair(!gpBase->mpPlayer->GetShowCrosshair());
+		//gpBase->mpPlayer->SetShowCrosshair(!gpBase->mpPlayer->GetShowCrosshair());
+		mpPlayer->SetKeyPressed(1);//1=OnXKeyPressed, 2=OnJKeyPressed, 3=OnMKeyPressed, 4=OnNKeyPressed
 	}
 
 	////////////////////
@@ -998,29 +999,33 @@ void cLuxInputHandler::UpdateGamePlayerInput()
 			if(gpBase->mpInventory->GetDisabled()==false)
 				gpBase->mpEngine->GetUpdater()->SetContainer("Inventory");
 		}
-		if(mpInput->BecameTriggerd(eLuxAction_Journal))
+		if(mpInput->BecameTriggerd(eLuxAction_Journal))//triggered when eLuxAction_Journal is triggered, J-Key Pressed.
 		{
-			if(gpBase->mpInventory->GetDisabled()==false)
-				gpBase->mpEngine->GetUpdater()->SetContainer("Journal");
+			//if(gpBase->mpInventory->GetDisabled()==false)
+			//	gpBase->mpEngine->GetUpdater()->SetContainer("Journal");
+			mpPlayer->SetKeyPressed(2);//1=OnXKeyPressed, 2=OnJKeyPressed, 3=OnMKeyPressed, 4=OnNKeyPressed
 		}
-		if(mpInput->BecameTriggerd(eLuxAction_QuestLog))
+		if(mpInput->BecameTriggerd(eLuxAction_QuestLog))//triggered when eLuxAction_QuestLog is triggered, M-Key Pressed.
 		{
-			if(gpBase->mpInventory->GetDisabled()==false)
-			{
-				gpBase->mpJournal->SetForceInstantExit(true);
-				gpBase->mpEngine->GetUpdater()->SetContainer("Journal");
-				gpBase->mpJournal->ChangeState(eLuxJournalState_QuestLog);
-			}
+			//if(gpBase->mpInventory->GetDisabled()==false)
+			//{
+			//	gpBase->mpJournal->SetForceInstantExit(true);
+			//	gpBase->mpEngine->GetUpdater()->SetContainer("Journal");
+			//	gpBase->mpJournal->ChangeState(eLuxJournalState_QuestLog);
+			//}
+			mpPlayer->SetKeyPressed(3);//1=OnXKeyPressed, 2=OnJKeyPressed, 3=OnMKeyPressed, 4=OnNKeyPressed
+
 		}
-		if(mpInput->BecameTriggerd(eLuxAction_RecentText))
+		if(mpInput->BecameTriggerd(eLuxAction_RecentText))//triggered when eLuxAction_RecentText is triggered, N-Key Pressed.
 		{
-			if(gpBase->mpInventory->GetDisabled()==false)
-			{
-				gpBase->mpJournal->OpenLastReadText();
-			}
+			//if(gpBase->mpInventory->GetDisabled()==false)
+			//{
+			//	gpBase->mpJournal->OpenLastReadText();
+			//}
+			mpPlayer->SetKeyPressed(4);//1=OnXKeyPressed, 2=OnJKeyPressed, 3=OnMKeyPressed, 4=OnNKeyPressed
+
 		}
 	}
-
 	/////////////////
 	// Movement Direction
 	if(mpInput->IsTriggerd(eLuxAction_Forward))
@@ -1042,7 +1047,7 @@ void cLuxInputHandler::UpdateGamePlayerInput()
 
 	/////////////////
 	// Lean
-
+ 
 	if(mpInput->BecameTriggerd(eLuxAction_LeanRight))
 	{
 		mpPlayer->SetLean(1);
@@ -1294,7 +1299,7 @@ void cLuxInputHandler::UpdateInventoryInput()
 	//Journal
 	if(mpInput->BecameTriggerd(eLuxAction_Journal))
 	{
-		gpBase->mpInventory->OpenJournal();
+		//gpBase->mpInventory->OpenJournal();//disabled to prevent journal from actually opening when we actually want to call an engine script function.
 	}
 
 	////////////////////

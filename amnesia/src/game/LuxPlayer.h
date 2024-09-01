@@ -100,6 +100,7 @@ public:
 	void Move(eCharDir aDir, float afMul);
 	void AddYaw(float afAmount);
 	void AddPitch(float afAmount);
+	void SetKeyPressed(float afMul);
 	void SetLean(float afMul);
 	void AddLean(float afAdd);
 	

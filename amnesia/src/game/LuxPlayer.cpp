@@ -712,6 +712,42 @@ void cLuxPlayer::AddPitch(float afAmount)
 
 //-----------------------------------------------------------------------
 
+void cLuxPlayer::SetKeyPressed(float afMul)//1=OnXKeyPressed, 2=OnJKeyPressed, 3=OnMKeyPressed, 4=OnNKeyPressed
+{
+//	mpLean->SetLean(afMul);
+
+	if(afMul==1)//triggered when eLuxAction_QuestLog is triggered, X-Key Pressed.
+	{
+			cLuxMap *pMap = gpBase->mpMapHandler->GetCurrentMap();//Makes sure the player is in a gameplay map.
+			if(pMap==NULL) return;
+
+			pMap->AddTimer("OnXKeyPressed-timer",0.0f, "OnXKeyPressed");//Calls the OnXKeyPressed timer in engine scripts.
+	}
+	if(afMul==2)//triggered when eLuxAction_Journal is triggered, J-Key Pressed.
+	{
+			cLuxMap *pMap = gpBase->mpMapHandler->GetCurrentMap();//Makes sure the player is in a gameplay map.
+			if(pMap==NULL) return;
+
+			pMap->AddTimer("OnJKeyPressed-timer",0.0f, "OnJKeyPressed");//Calls the OnJKeyPressed timer in engine scripts.
+	}
+	if(afMul==3)//triggered when eLuxAction_QuestLog is triggered, M-Key Pressed.
+	{
+			cLuxMap *pMap = gpBase->mpMapHandler->GetCurrentMap();//Makes sure the player is in a gameplay map.
+			if(pMap==NULL) return;
+
+			pMap->AddTimer("OnMKeyPressed-timer",0.0f, "OnMKeyPressed");//Calls the OnMKeyPressed timer in engine scripts.
+	}
+	if(afMul==4)//triggered when eLuxAction_RecentText is triggered, N-Key Pressed.
+	{
+			cLuxMap *pMap = gpBase->mpMapHandler->GetCurrentMap();//Makes sure the player is in a gameplay map.
+			if(pMap==NULL) return;
+
+			pMap->AddTimer("OnNKeyPressed-timer",0.0f, "OnNKeyPressed");//Calls the OnNKeyPressed timer in engine scripts.
+	}
+
+}
+
+
 void cLuxPlayer::SetLean(float afMul)
 {
 //	mpLean->SetLean(afMul);
@@ -721,14 +757,14 @@ void cLuxPlayer::SetLean(float afMul)
 			cLuxMap *pMap = gpBase->mpMapHandler->GetCurrentMap();
 			if(pMap==NULL) return;
 
-			pMap->AddTimer("OnEKeyPressed-timer",0.0f, "OnEKeyPressed");
+			pMap->AddTimer("OnEKeyPressed-timer",0.0f, "OnEKeyPressed");//Calls the OnEKeyPressed timer in engine scripts.
 	}
 	if(afMul==-1)//triggered when eLuxAction_LeanLeft is triggered, Q-Key Pressed
 	{
 			cLuxMap *pMap = gpBase->mpMapHandler->GetCurrentMap();
 			if(pMap==NULL) return;
 
-			pMap->AddTimer("OnQKeyPressed-timer",0.0f, "OnQKeyPressed");
+			pMap->AddTimer("OnQKeyPressed-timer",0.0f, "OnQKeyPressed");//Calls the OnQKeyPressed timer in engine scripts.
 	}
 }
 
@@ -751,13 +787,13 @@ void cLuxPlayer::DoAction(eLuxPlayerAction aAction, bool abPressed)
 {
 	if(mvStates[mState]->OnDoAction(aAction, abPressed))
 	{
-		if(aAction== eLuxPlayerAction_Lantern && abPressed)
+		if(aAction== eLuxPlayerAction_Lantern && abPressed)//triggered when eLuxAction_RecentText is triggered, N-Key Pressed
 		{
 //			mpLantern->SetActive(!mpLantern->IsActive(), true);
-			cLuxMap *pMap = gpBase->mpMapHandler->GetCurrentMap();
+			cLuxMap *pMap = gpBase->mpMapHandler->GetCurrentMap();//Makes sure the player is in a gameplay map.
 			if(pMap==NULL) return;
 
-			pMap->AddTimer("OnFKeyPressed_Timer",0.0f, "OnFKeyPressed");
+			pMap->AddTimer("OnFKeyPressed_Timer",0.0f, "OnFKeyPressed");//Calls the OnNKeyPressed timer in engine scripts.
 
 		}
 
